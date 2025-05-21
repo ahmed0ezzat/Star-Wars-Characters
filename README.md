@@ -1,12 +1,53 @@
-# React + Vite
+# React + Vite Star Wars Characters Explorer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a React application built with Vite that allows users to search and filter Star Wars characters using the [SWAPI](https://swapi.dev/) API. It features a responsive UI with search and filter capabilities, pagination, and detailed character modals.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Search characters by name.
+- Filter characters by homeworld, film, or species.
+- Pagination to navigate through results.
+- Character details modal for more information.
+- Loading and error handling states.
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) (v14 or higher recommended)
+- npm or yarn package manager
+
+### Installation
+
+```bash
+git clone https://github.com/ahmed0ezzat/Star-Wars-Characters.git
+cd star-wars-explorer
+npm install
+# or
+yarn install
+```
+
+Running the Project
+Start the development server with hot module replacement:
+
+```bash
+npm run dev
+# or
+yarn dev
+```
+
+Open your browser and go to http://localhost:5173 to view the app.
+
+Building for Production
+Build an optimized production version:
+
+```bash
+npm run preview
+# or
+yarn preview
+
+```
+
+
+## License
+This project is licensed under the MIT © Ahmed Ezzat
