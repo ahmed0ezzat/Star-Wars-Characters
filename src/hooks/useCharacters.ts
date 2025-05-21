@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { fetchPeople } from '../api/swapi';
 
 interface Character {
@@ -23,25 +23,37 @@ export function useCharacters(
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [totalPages, setTotalPages] = useState(1);
+  const [retryCount, setRetryCount] = useState(0);
+
+  const fetchCharacters = useCallback(async () => {
+    setLoading(true);
+    setError(null);
+    
+    try {
+      const response = await fetchPeople(page, searchTerm);
+      setCharacters(response.data.results);
+      setTotalPages(Math.ceil(response.data.count / 10));
+    } catch (e) {
+      setError('Failed to fetch characters. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  }, [page, searchTerm, filterType, filterValue]);
+
+  const retry = useCallback(() => {
+    setRetryCount(prev => prev + 1);
+  }, []);
 
   useEffect(() => {
-    const fetch = async () => {
-      setLoading(true);
-      try {
-        const response = await fetchPeople(page, searchTerm);
-        setCharacters(response.data.results);
-        setTotalPages(Math.ceil(response.data.count / 10));
-        setError('');
-      } catch (e) {
-        setError('Failed to fetch characters');
-      } finally {
-        setLoading(false);
-      }
-    };
-  
-    fetch();
-  }, [page, searchTerm, filterType, filterValue]);
-  
+    fetchCharacters();
+  }, [fetchCharacters, retryCount]);
 
-  return { characters, loading, error, totalPages };
+  return { 
+    characters, 
+    loading, 
+    error, 
+    totalPages,
+    retry, 
+    retryCount 
+  };
 }

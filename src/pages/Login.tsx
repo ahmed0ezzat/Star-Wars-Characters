@@ -106,7 +106,7 @@ function Login() {
           <button
             type="submit"
             disabled={isLoading}
-            className={`w-full flex justify-center items-center py-3 px-4 rounded-lg font-medium text-white bg-yellow-500 hover:bg-yellow-600 transition-all ${isLoading ? 'opacity-80 cursor-not-allowed' : ''}`}
+            className={`w-full flex justify-center items-center py-3 px-4 cursor-pointer rounded-lg font-medium text-white bg-yellow-500 hover:bg-yellow-600 transition-all ${isLoading ? 'opacity-80 cursor-not-allowed' : ''}`}
           >
             {isLoading ? (
               <>
@@ -120,14 +120,6 @@ function Login() {
               'Sign in'
             )}
           </button>
-
-          {/* Footer */}
-          <div className="text-center text-sm text-gray-400">
-            Don't have an account?{' '}
-            <a href="#" className="font-medium text-yellow-400 hover:text-yellow-300">
-              Sign up
-            </a>
-          </div>
         </form>
       </div>
     </div>

@@ -15,18 +15,18 @@ function Home() {
   const [filterValue, setFilterValue] = useState('');
   const [selectedCharacter, setSelectedCharacter] = useState(null);
 
-  const { characters, loading, error, totalPages } = useCharacters(
+  const { characters, loading, error, totalPages, retry } = useCharacters(
     page,
     searchTerm,
     filterType,
     filterValue
   );
 
+  if (error) return <ErrorMessage message={error} onRetry={() => retry()} showRetry={true} />
+
   return (
-    <main className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 text-white px-4 py-8 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        <Header />
-        {error && <ErrorMessage message={error} />}
+      <>
+        {/* <Header /> */}
         <SearchFilterBar
               onSearch={(value) => {
                 setSearchTerm(value);
@@ -39,10 +39,9 @@ function Home() {
               }}
             /> 
         {loading ? (
-          <div className="flex justify-center items-center h-64">
-            <Loader />
-          </div>
-        ) : characters.length > 0 ? (
+          <Loader />
+        ):
+        characters.length > 0 ? (
           <> 
             <CharacterGrid characters={characters} onSelect={setSelectedCharacter} />
             <Pagination page={page} totalPages={totalPages} onPageChange={setPage} />
@@ -50,12 +49,11 @@ function Home() {
         ) : (
           <div className="text-center text-gray-400 py-20">No characters found.</div>
         )}
-      </div>
 
       {selectedCharacter && (
         <CharacterModal character={selectedCharacter} onClose={() => setSelectedCharacter(null)} />
       )}
-    </main>
+  </>
   );
 }
 
