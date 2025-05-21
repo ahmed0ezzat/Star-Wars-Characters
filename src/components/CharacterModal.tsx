@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { fetchResource, proxy } from '../api/swapi';
+import { fetchResource, PROXY_URL } from '../api/swapi';
 import dayjs from 'dayjs';
 
 interface CharacterModalProps {
@@ -21,7 +21,7 @@ function CharacterModal({ character, onClose }: CharacterModalProps) {
 
   useEffect(() => {
     setIsLoading(true);
-    fetchResource(proxy + character.homeworld)
+    fetchResource(PROXY_URL + character.homeworld)
       .then((res) => {
         setHomeworld(res.data);
         setIsLoading(false);
@@ -69,7 +69,7 @@ function CharacterModal({ character, onClose }: CharacterModalProps) {
               <p className="font-medium" data-testid="modal-character-height">{Number(character.height) / 100} m</p>
             </div>
             <div className="bg-gray-800/50 p-3 rounded-lg">
-              <p className="text-xs text-gray-400" height>Mass</p>
+              <p className="text-xs text-gray-400">Mass</p>
               <p className="font-medium" data-testid="modal-character-mass">{character.mass} kg</p>
             </div>
             <div className="bg-gray-800/50 p-3 rounded-lg">

@@ -9,10 +9,3 @@ export interface Character {
     species: string[];
     url: string;
   }
-  
-  export interface Homeworld {
-    name: string;
-    terrain: string;
-    climate: string;
-    population: string;
-  }

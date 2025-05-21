@@ -1,11 +1,5 @@
+import { Character } from '../types/swapi';
 import CharacterCard from './CharacterCard';
-
-interface Character {
-    name: string;
-    species: string[];
-    birth_year: string;
-    homeworld: string;
-}
 
 interface CharacterGridProps {
   characters: Character[];
