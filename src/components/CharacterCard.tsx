@@ -23,6 +23,7 @@ const getSpeciesText = (species: string[]) => {
 function CharacterCard({ character, imageSeed }: Props) {
   return (
     <div
+      data-testid="character-card"
       className={`${getSpeciesColor(character.species)} rounded-xl overflow-hidden shadow-lg border border-gray-700/50 transition-all duration-300 group-hover:border-yellow-400/50 cursor-pointer`}
       role="group"
       aria-label={`Character card for ${character.name}`}
@@ -40,6 +41,7 @@ function CharacterCard({ character, imageSeed }: Props) {
 
       <div className="p-4">
         <h2
+          data-testid="character-name"
           className="text-xl font-bold text-white mb-1 truncate"
           title={character.name}
         >
