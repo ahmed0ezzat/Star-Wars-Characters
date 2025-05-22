@@ -32,15 +32,13 @@ function Home() {
     filterValue
   );
 
-  useEffect(() => {
-    setPage(1);
-  }, [filters]);
-
   const handleSearch = (value: string) => {
+    setPage(1);
     setFilters((prev) => ({ ...prev, searchTerm: value }));
   };
 
   const handleFilter = (type: string, value: string) => {
+    setPage(1);
     setFilters((prev) => ({ ...prev, filterType: type, filterValue: value }));
   };
 
