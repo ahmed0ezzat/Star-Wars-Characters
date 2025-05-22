@@ -3,9 +3,9 @@ describe('Character Modal Integration Test', () => {
     // Simulate login via localStorage
     cy.window().then((win) => {
       win.localStorage.setItem('token', 'mocked-jwt-token');
-    });
-    cy.visit('/');
-    cy.get('[data-testid="character-card"]').should('exist');
+    })
+      .visit('/')
+      .get('[data-testid="character-card"]').should('exist');
   });
 
   it('opens modal with correct character info when a card is clicked', () => {

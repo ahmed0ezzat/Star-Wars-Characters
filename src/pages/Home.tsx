@@ -6,6 +6,7 @@ import Loader from '../components/Loader';
 import Pagination from '../components/Pagination';
 import ErrorMessage from '../components/ErrorMessage';
 import SearchFilterBar from '../components/SearchFilterBar';
+import { Character } from '../types/swapi';
 
 interface Filters {
   searchTerm: string;
@@ -20,12 +21,10 @@ function Home() {
     filterType: 'homeworld',
     filterValue: '',
   });
-  const [selectedCharacter, setSelectedCharacter] = useState(null);
+  const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(null);
 
-  // Destructure filters for easier passing to hook
   const { searchTerm, filterType, filterValue } = filters;
 
-  // Whenever filters or page changes, fetch characters accordingly
   const { characters, loading, error, totalPages, retry } = useCharacters(
     page,
     searchTerm,
@@ -33,12 +32,10 @@ function Home() {
     filterValue
   );
 
-  // Reset page to 1 whenever filters change
   useEffect(() => {
     setPage(1);
   }, [filters]);
 
-  // Handlers to update filter state
   const handleSearch = (value: string) => {
     setFilters((prev) => ({ ...prev, searchTerm: value }));
   };
@@ -50,22 +47,25 @@ function Home() {
   if (error)
     return <ErrorMessage message={error} onRetry={retry} showRetry={true} />;
 
+  let content;
+
+  if (loading) {
+    content = <Loader />;
+  } else if (characters.length > 0) {
+    content = (
+      <>
+        <CharacterGrid characters={characters} onSelect={setSelectedCharacter} />
+        <Pagination page={page} totalPages={totalPages} onPageChange={setPage} />
+      </>
+    );
+  } else {
+    content = <div className="text-center text-gray-400 py-20">No characters found.</div>;
+  }
+
   return (
     <>
-      {/* <Header /> */}
       <SearchFilterBar onSearch={handleSearch} onFilter={handleFilter} />
-
-      {loading ? (
-        <Loader />
-      ) : characters.length > 0 ? (
-        <>
-          <CharacterGrid characters={characters} onSelect={setSelectedCharacter} />
-          <Pagination page={page} totalPages={totalPages} onPageChange={setPage} />
-        </>
-      ) : (
-        <div className="text-center text-gray-400 py-20">No characters found.</div>
-      )}
-
+      {content}
       {selectedCharacter && (
         <CharacterModal character={selectedCharacter} onClose={() => setSelectedCharacter(null)} />
       )}

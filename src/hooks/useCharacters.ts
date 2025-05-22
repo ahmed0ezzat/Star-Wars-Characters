@@ -28,18 +28,22 @@ export function useCharacters(
       if (filterType && filterValue.trim() !== '') {
         const filterValueLower = filterValue.toLowerCase();
 
-        results = results.filter((char) => {
-          if (filterType === 'homeworld') {
+        results = results.filter((char: Character) => {
+          if (filterType === "homeworld") {
             // Homeworld is a URL; you may want to fetch the name or do partial match on URL
             // Assuming you have cached homeworld names or just match URL for demo
             // For example purposes: check if homeworld URL includes filterValue string
             return char.homeworld.toLowerCase().includes(filterValueLower);
-          } else if (filterType === 'film') {
+          } else if (filterType === "film") {
             // char.films is array of URLs, so filter if any film URL includes filterValue
-            return char.films.some(filmUrl => filmUrl.toLowerCase().includes(filterValueLower));
-          } else if (filterType === 'species') {
+            return char.films.some((filmUrl) =>
+              filmUrl.toLowerCase().includes(filterValueLower)
+            );
+          } else if (filterType === "species") {
             // char.species is array of URLs, check if any species URL includes filterValue
-            return char.species.some(speciesUrl => speciesUrl.toLowerCase().includes(filterValueLower));
+            return char.species.some((speciesUrl) =>
+              speciesUrl.toLowerCase().includes(filterValueLower)
+            );
           }
           return true;
         });

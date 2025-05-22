@@ -1,18 +1,10 @@
+import { Character } from "../types/swapi";
+import { getSpeciesColor } from "../utils/utils";
+
 interface Props {
-  character: {
-    name: string;
-    species: string[];
-    birth_year: string;
-    homeworld: string;
-  };
+  character: Character;
   imageSeed: number;
 }
-
-const getSpeciesColor = (species: string[]) => {
-  if (species.length === 0) return 'bg-yellow-500/10';
-  if (species[0].toLowerCase().includes('droid')) return 'bg-green-500/10';
-  return 'bg-blue-500/10';
-};
 
 const getSpeciesText = (species: string[]) => {
   if (species.length === 0) return 'Human';
