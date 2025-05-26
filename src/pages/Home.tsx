@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useCharacters } from '../hooks/useCharacters';
 import CharacterGrid from '../components/CharacterGrid';
 import CharacterModal from '../components/CharacterModal';

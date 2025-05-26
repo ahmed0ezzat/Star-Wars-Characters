@@ -3,8 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 function Header() {
   const navigate = useNavigate();
-  const logout = useAuthStore(state => state.logout);
-  const isAuthenticated = useAuthStore(state => state.isAuthenticated);
+  const { isAuthenticated, logout } = useAuthStore();
 
   const handleLogout = () => {
     logout();

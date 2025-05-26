@@ -38,13 +38,11 @@ yarn dev
 
 Open your browser and go to http://localhost:5173 to view the app.
 
-Building for Production
-Build an optimized production version:
-
+run UT:
 ```bash
-npm run preview
+npm run test
 # or
-yarn preview
+yarn test
 
 ```
 
