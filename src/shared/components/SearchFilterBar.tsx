@@ -30,8 +30,8 @@ function SearchFilterBar({ onSearch, onFilter }: Props) {
         <input
           type="text"
           placeholder="Search by name..."
-          className="w-full max-w-md px-5 py-3 rounded-lg border border-gray-300 shadow-sm 
-                     focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400
+          className="w-full max-w-md px-5 py-3 rounded-lg border border-gray-300 shadow-sm \
+                     focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400\
                      transition duration-300"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
@@ -41,12 +41,11 @@ function SearchFilterBar({ onSearch, onFilter }: Props) {
           }}
         />
       </div>
-
       {/* Filters */}
       <div className="flex flex-col md:flex-row items-center justify-center gap-4">
         <select
-          className="w-full md:w-40 h-12 px-4 py-2 rounded-lg border border-gray-300 
-                     shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400
+          className="w-full md:w-40 h-12 px-4 py-2 rounded-lg border border-gray-300 \
+                     shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400\
                      transition duration-300"
           value={filterType}
           onChange={(e) => {
@@ -60,12 +59,11 @@ function SearchFilterBar({ onSearch, onFilter }: Props) {
           <option value="film">Film</option>
           <option value="species">Species</option>
         </select>
-
         <input
           type="text"
           placeholder={`Filter by ${filterType}`}
-          className="w-full md:w-64 px-5 py-3 rounded-lg border border-gray-300 
-                     shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400
+          className="w-full md:w-64 px-5 py-3 rounded-lg border border-gray-300 \
+                     shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400\
                      transition duration-300"
           value={filterValue}
           onChange={(e) => setFilterValue(e.target.value)}
@@ -76,7 +74,6 @@ function SearchFilterBar({ onSearch, onFilter }: Props) {
         />
       </div>
       <div className="flex items-center justify-center gap-2 mt-3 text-sm">
-
         {/* Disclaimer */}
         <div className="flex items-center gap-1 text-gray-400">
           <span>Press</span>

@@ -1,9 +1,9 @@
-import { Character } from "../types/swapi";
-import { getSpeciesColor } from "../utils/utils";
+import type { Character } from '../../../types/swapi';
+import { getSpeciesColor } from '../../../utils/utils';
 
 interface Props {
-  character: Character;
-  imageSeed: number;
+  readonly character: Character;
+  readonly imageSeed: number;
 }
 
 const getSpeciesText = (species: string[]) => {
@@ -30,7 +30,6 @@ function CharacterCard({ character, imageSeed }: Props) {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80 pointer-events-none" />
       </div>
-
       <div className="p-4">
         <h2
           data-testid="character-name"

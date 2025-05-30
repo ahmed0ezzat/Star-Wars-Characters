@@ -1,20 +1,9 @@
+import { fetchPeople } from '../../../api/swapi';
+import type { Character } from '../../../types/swapi';
 import { useQuery } from '@tanstack/react-query';
-import { fetchPeople } from '../api/swapi';
-import { Character } from '../types/swapi';
 
-export function useCharacters(
-  page: number,
-  searchTerm: string,
-  filterType: string,
-  filterValue: string
-) {
-  // Query key includes all params for caching and refetching
-  const {
-    data,
-    isLoading: loading,
-    isError,
-    refetch,
-  } = useQuery({
+export function useCharacters(page: number, searchTerm: string, filterType: string, filterValue: string) {
+  return useQuery({
     queryKey: ['characters', page, searchTerm, filterType, filterValue],
     queryFn: async () => {
       const response = await fetchPeople(page, searchTerm);
@@ -38,15 +27,5 @@ export function useCharacters(
         totalPages: Math.ceil(response.data.count / 10),
       };
     },
-    retry: 1,
-    // Remove keepPreviousData (not supported in v5)
   });
-
-  return {
-    characters: data?.characters ?? [],
-    loading,
-    error: isError ? 'Failed to fetch characters. Please try again.' : null,
-    totalPages: data?.totalPages ?? 1,
-    retry: refetch,
-  };
 }

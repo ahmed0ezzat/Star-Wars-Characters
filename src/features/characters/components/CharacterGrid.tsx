@@ -1,9 +1,9 @@
-import { Character } from '../types/swapi';
+import type { Character } from '../../../types/swapi';
 import CharacterCard from './CharacterCard';
 
 interface CharacterGridProps {
-  characters: Character[];
-  onSelect: (character: Character) => void;
+  readonly characters: Character[];
+  readonly onSelect: (character: Character) => void;
 }
 
 function CharacterGrid({ characters, onSelect }: CharacterGridProps) {

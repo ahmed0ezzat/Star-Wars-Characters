@@ -14,7 +14,6 @@ function Login() {
     e.preventDefault();
     setError('');
     setIsLoading(true);
-    
     try {
       await login(username, password);
       navigate('/');
@@ -30,7 +29,6 @@ function Login() {
       <div className="relative w-full max-w-md">
         {/* Glow effect */}
         <div className="absolute -inset-1 bg-yellow-500 rounded-lg blur opacity-20 animate-pulse"></div>
-        
         {/* Login card */}
         <form 
           onSubmit={handleSubmit}
@@ -57,14 +55,12 @@ function Login() {
             <h1 className="text-2xl font-bold text-white">Welcome Back</h1>
             <p className="text-gray-400 mt-1">Sign in to your account</p>
           </div>
-
           {/* Error message */}
           {error && (
             <div className="bg-red-500/10 border border-red-500/50 text-red-300 px-4 py-3 rounded-lg text-sm">
               {error}
             </div>
           )}
-
           {/* Form fields */}
           <div className="space-y-4">
             <div>
@@ -83,14 +79,12 @@ function Login() {
                 />
               </div>
             </div>
-
             <div>
               <label htmlFor="password" className="block text-sm font-medium text-gray-300 mb-1">
                 Password
               </label>
               <div className="relative">
                 <input
-                
                   id="password"
                   type="password"
                   placeholder="••••••••"
@@ -102,7 +96,6 @@ function Login() {
               </div>
             </div>
           </div>
-
           {/* Submit button */}
           <button
             type="submit"

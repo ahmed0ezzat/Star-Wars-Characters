@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import { useCharacters } from '../hooks/useCharacters';
-import CharacterGrid from '../components/CharacterGrid';
-import CharacterModal from '../components/CharacterModal';
-import Loader from '../components/Loader';
-import Pagination from '../components/Pagination';
-import ErrorMessage from '../components/ErrorMessage';
-import SearchFilterBar from '../components/SearchFilterBar';
-import { Character } from '../types/swapi';
+import CharacterGrid from '../features/characters/components/CharacterGrid';
+import CharacterModal from '../features/characters/components/CharacterModal';
+import { useCharacters } from '../features/characters/hooks/useCharacters';
+import Loader from '../shared/components/Loader';
+import Pagination from '../shared/components/Pagination';
+import ErrorMessage from '../shared/components/ErrorMessage';
+import SearchFilterBar from '../shared/components/SearchFilterBar';
+import type { Character } from '../types/swapi';
 
 interface Filters {
   searchTerm: string;
@@ -25,12 +25,15 @@ function Home() {
 
   const { searchTerm, filterType, filterValue } = filters;
 
-  const { characters, loading, error, totalPages, retry } = useCharacters(
+  const { data, isLoading, isError, error, refetch } = useCharacters(
     page,
     searchTerm,
     filterType,
     filterValue
   );
+
+  const characters = data?.characters ?? [];
+  const totalPages = data?.totalPages ?? 1;
 
   const handleSearch = (value: string) => {
     setPage(1);
@@ -42,12 +45,12 @@ function Home() {
     setFilters((prev) => ({ ...prev, filterType: type, filterValue: value }));
   };
 
-  if (error)
-    return <ErrorMessage message={error} onRetry={retry} showRetry={true} />;
+  if (isError)
+    return <ErrorMessage message={String(error)} onRetry={refetch} showRetry={true} />;
 
   let content;
 
-  if (loading) {
+  if (isLoading) {
     content = <Loader />;
   } else if (characters.length > 0) {
     content = (

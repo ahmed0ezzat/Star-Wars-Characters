@@ -55,12 +55,10 @@ function ErrorMessage({
             />
           </svg>
         </div>
-
         {/* Error Message */}
         <div className="bg-red-600/20 border border-red-500/50 text-red-100 px-6 py-4 rounded-xl mb-8 text-lg">
           {message}
         </div>
-
         {/* Retry Button */}
         {showRetry && (
           <button
@@ -84,7 +82,6 @@ function ErrorMessage({
             Retry
           </button>
         )}
-
         {/* Auto-redirect countdown */}
         {autoRedirect && (
           <div className="mt-6 text-gray-400 text-sm">
