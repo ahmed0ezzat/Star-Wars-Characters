@@ -23,6 +23,6 @@ describe('Login Page', () => {
     cy.get('input#password').type('badpass');
     // Simulate error by clearing localStorage before submit
     cy.get('button[type="submit"]').click();
-    cy.get('.bg-red-500/10').should('contain.text', 'Invalid credentials');
+    cy.get('[data-testid="login-error"]').should('contain.text', 'Invalid credentials');
   });
 });

@@ -11,9 +11,14 @@ export const useAuthStore = create<AuthState>((set) => ({
     token: localStorage.getItem('token'),
     isAuthenticated: !!localStorage.getItem('token'),
     login: (username, password) => {
-        const token = btoa(`${username}:${password}`); //mock JWK
-        localStorage.setItem('token', token); //not secure ONLY for demo.
-        set({ token, isAuthenticated: true });
+        // Only allow a specific username/password for demo/testing
+        if (username === 'testuser' && password === 'testpass') {
+            const token = btoa(`${username}:${password}`); //mock JWK
+            localStorage.setItem('token', token); //not secure ONLY for demo.
+            set({ token, isAuthenticated: true });
+        } else {
+            throw new Error('Invalid credentials');
+        }
     },
     logout: () => {
         localStorage.removeItem('token');

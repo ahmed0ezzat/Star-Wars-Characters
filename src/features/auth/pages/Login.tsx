@@ -57,7 +57,10 @@ function Login() {
           </div>
           {/* Error message */}
           {error && (
-            <div className="bg-red-500/10 border border-red-500/50 text-red-300 px-4 py-3 rounded-lg text-sm">
+            <div
+              className="bg-red-500/10 border border-red-500/50 text-red-300 px-4 py-3 rounded-lg text-sm"
+              data-testid="login-error"
+            >
               {error}
             </div>
           )}
