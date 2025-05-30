@@ -29,5 +29,10 @@ export const fetchPeople = (page: number, search?: string) => {
  * @returns Axios promise with the resource data.
  */
 export const fetchResource = (url: string) => {
+  // If the URL is a SWAPI resource, use the proxy
+  if (url.startsWith('https://swapi.dev/api')) {
+    return axios.get(`${PROXY_URL}${url}`);
+  }
+  // Otherwise, fetch directly
   return axios.get(url);
 };

@@ -2,7 +2,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import Home from '../pages/Home';
 import Login from '../features/auth/pages/Login';
 import Header from '../components/Header';
-import { useAuthStore } from '../store/authStore';
+import { useAuthStore } from '../features/auth/store/authStore';
 
 const AppRoutes = () => {
   const { isAuthenticated } = useAuthStore();
